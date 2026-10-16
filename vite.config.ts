@@ -3,14 +3,14 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// GitHub Pages serves the site from https://<user>.github.io/<repo>/
-const repoBase = '/fincore-accounting/'
-
+// Served from the custom domain https://fincore.codespanda.com/ (set in the repo's Pages settings),
+// so the site lives at the domain root. If you go back to https://<user>.github.io/<repo>/,
+// set base to '/<repo>/'.
 // https://vite.dev/config/
-export default defineConfig(({ command, isPreview }) => ({
-  base: command === 'build' || isPreview ? repoBase : '/',
+export default defineConfig({
+  base: '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: { '@': path.resolve(import.meta.dirname, './src') },
   },
-}))
+})
